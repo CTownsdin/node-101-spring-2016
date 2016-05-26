@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src="bower_components/handlebars/handlebars.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  
+
+  <script>
+    var template = Handlebars.compile('<div>Hello {{name}}</div>');  // global handlebars object  // take template & compile it to a fn
+    console.log(template);  // is a function, which returned the rendered template as a string   
+    var appEl = document.getElementById('app');
+    appEl.innerHTML = template({ name: 'Handlebars' });
+
+    // var template = 'something {{thing}}';
+    // var compiledFn = Handlebars.compile(template);  
+    // console.log(compiledFn);  // fn
+    // var rendered = compiledFn({ thing: 'awesome' });  // feed the fn the object
+    // console.log(rendered);  // something awesome
+  </script>
+</body>
+</html>
