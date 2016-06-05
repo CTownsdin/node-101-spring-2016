@@ -34,3 +34,4 @@ module.exports.run = function(jsonString) {
        
     return hotels;
 }
+

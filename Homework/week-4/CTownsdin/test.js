@@ -1,7 +1,7 @@
 'use strict';
 
 var colors = require('colors');
-var program = require('./CTownsdin/solution');
+var program = require('./solution');
 
 function failed(name, message, expected, actual) {
   var output = colors.bold.red('\nTest "%s": Failed --- %s\n');
@@ -80,7 +80,7 @@ function testWrong() {
 }
 
 function testMissing() {
-  var missingJson = Object.assign({}, require('./search_response'));  // debug me here !
+  var missingJson = Object.assign({}, require('./search_response'));
 
   missingJson.hotelList = missingJson.hotelList.map(function(val, index) {
     switch (index % 5) {

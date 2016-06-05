@@ -7,15 +7,12 @@ function failed(name, message, expected, actual) {
   var output = colors.bold.red('\nTest "%s": Failed --- %s\n');
   output += colors.yellow('\tExpected: %s\n');
   output += colors.red('\tActual: %s\n');
-
   console.log(output, name, message, expected, actual);
-
   return false;
 }
 
 function passed(name, message) {
   var output = colors.green('Test "%s": Passed --- %s');
-
   console.log(output, name, message);
 }
 
@@ -44,18 +41,17 @@ function testBad() {
 
   try {
     global.whichTest = 'testBad';
-    program.run(testCallback);
+    program.run(testCallback);  // here
   }
-  catch (err) {
+  catch (err) {   // catching here is bad.  
+    console.log('catching in testJS');
     unexpectedError(err);
   }
 }
 
 function testWrong() {
   function testCallback(err, actual) {
-    if (err) {
-      unexpectedError(err);
-    }
+    if (err) { unexpectedError(err); }
 
     if (!actual || !Array.isArray(actual)) {
       return failed(
@@ -263,8 +259,8 @@ function testGood() {
   }
 
   try {
-    global.whichTest = 'testGood';
-    program.run(testCallback);
+    global.whichTest = 'testGood';    // get-search-results is checking this
+    program.run(testCallback);   // passing this testCallback function into (actually... solution.js export)
   }
   catch (err) {
     return failed(
@@ -275,7 +271,9 @@ function testGood() {
   }
 }
 
-testBad();
+testBad();   
 testWrong();
 testMissing();
 testGood();
+// Each type of test has it's own testCallback function, which gets passed into this week's solution.run function, 
+// and determines if the test passes or fails.

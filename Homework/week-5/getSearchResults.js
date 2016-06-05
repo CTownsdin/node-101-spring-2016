@@ -42,20 +42,21 @@ var wrongJson = {
   valD: true
 };
 
-var data = {
+var data = {               // the data set that get will choose from
   testGood: JSON.stringify(goodJson),
   testMissing: JSON.stringify(missingJson),
   testWrong: JSON.stringify(wrongJson),
   testBad: 'This is not valid JSON'
 };
 
-function get(callback) {
+function getJSON(callback) {   // get some JSON, 1 of the data set randomly, and feed it to the callback function after a delay!
   var max = 5000;
   var min = 750;
-  var random = Math.floor(Math.random() * (max - min)) + min;
-  var callbackData = data[global.whichTest || defaultData];
+  var random = Math.floor(Math.random() * (max - min)) + min;    // random num 750 -> 5000
+  var callbackData = data[global.whichTest || defaultData];     // global object whichTest to run, default = testGood
 
-  setTimeout(callback, random, callbackData);
+                                // which kind of JSON
+  setTimeout(callback, random, callbackData);    // setTimeout( callback, randomWaitTime, run: dataSetOfChoice )
 }
 
-module.exports = get;
+module.exports = getJSON;

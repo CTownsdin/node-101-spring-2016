@@ -1,11 +1,13 @@
 'use strict';
 
-module.exports.run = function(jsonString) { 
-    
+module.exports = function(jsonString) {
     let json;
     
-    try {  json = JSON.parse(jsonString); } catch (error) {
-        throw new TypeError('BAD JSON');
+    try {  
+        json = JSON.parse(jsonString); 
+    } 
+    catch (error) {  
+        throw new Error('BAD JSON'); 
     }
     
     // return an array of hotel objects
@@ -13,7 +15,7 @@ module.exports.run = function(jsonString) {
     
     if (json.hotelList === undefined){ return []; }
     
-    json.hotelList.forEach(function(v,i,a){
+    json.hotelList.forEach( (v,i,a) => {
         hotels.push(
             {                    
                 "id": v.hotelId,
@@ -31,6 +33,6 @@ module.exports.run = function(jsonString) {
             }  
         );
     });
-       
+          
     return hotels;
-}
+};
