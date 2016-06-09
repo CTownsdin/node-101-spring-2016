@@ -4,9 +4,8 @@ module.exports.run = function(jsonString) {
     
     let json;
     
-    try {  json = JSON.parse(jsonString); } catch (error) {
-        throw new TypeError('BAD JSON');
-    }
+    try {  json = JSON.parse(jsonString); } 
+    catch (error) { throw new TypeError('BAD JSON'); }
     
     // return an array of hotel objects
     let hotels = [];
@@ -33,4 +32,4 @@ module.exports.run = function(jsonString) {
     });
        
     return hotels;
-}
+};

@@ -1,12 +1,13 @@
 'use strict';
 
-module.exports.run = function(jsonString) { 
+// a BETTER name for the solution.js of the week.
+
+module.exports = function(jsonString) { 
     
     let json;
     
-    try {  json = JSON.parse(jsonString); } catch (error) {
-        throw new TypeError('BAD JSON');
-    }
+    try {  json = JSON.parse(jsonString); } 
+    catch (error) { throw new TypeError('BAD JSON'); }   // should be BAD JSON STRING, but whatever
     
     // return an array of hotel objects
     let hotels = [];
@@ -33,5 +34,4 @@ module.exports.run = function(jsonString) {
     });
        
     return hotels;
-}
-
+};
